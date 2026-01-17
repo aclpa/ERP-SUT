@@ -1,0 +1,25 @@
+"""
+CRUD package
+CRUD operations for all models
+"""
+
+from app.crud.user import crud_user
+from app.crud.team import crud_team, crud_team_member
+from app.crud.project import crud_project
+from app.crud.sprint import crud_sprint
+from app.crud.issue import crud_issue
+from app.crud.server import crud_server
+from app.crud.service import crud_service
+from app.crud.deployment import crud_deployment
+
+__all__ = [
+    "crud_user",
+    "crud_team",
+    "crud_team_member",
+    "crud_project",
+    "crud_sprint",
+    "crud_issue",
+    "crud_server",
+    "crud_service",
+    "crud_deployment",
+]

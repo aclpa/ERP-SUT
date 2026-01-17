@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  # PostgreSQL 개발용 데이터베이스
+  postgres:
+    image: postgres:15-alpine
+    container_name: devflow-postgres-dev
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=devflow_erp
+      - POSTGRES_USER=devflow
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-devflow_pass_123}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-dev-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - devflow-dev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis 개발용 캐시
+  redis:
+    image: redis:7-alpine
+    container_name: devflow-redis-dev
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-dev-data:/data
+    networks:
+      - devflow-dev
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  devflow-dev:
+    driver: bridge
+    name: devflow_dev
+
+volumes:
+  postgres-dev-data:
+    name: devflow_postgres_dev_data
+  redis-dev-data:
+    name: devflow_redis_dev_data
