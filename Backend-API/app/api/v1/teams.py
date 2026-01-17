@@ -88,7 +88,7 @@ def create_team(
     team_in: TeamCreate,
     db: DBSession = None,
     current_user: CurrentUser = None,
-):
+    ):
     """
     Create a new team
     """
@@ -131,11 +131,11 @@ def create_team(
                     )
 
     # Add member count
-        team.member_count = db.query(func.count(TeamMember.id)).filter(
-        TeamMember.team_id == team.id
-        ).scalar() or 0
+    team.member_count = db.query(func.count(TeamMember.id)).filter(
+    TeamMember.team_id == team.id
+    ).scalar() or 0
 
-        return team
+    return team
 
 
 @router.get("/my", response_model=PaginatedResponse[TeamListResponse])
