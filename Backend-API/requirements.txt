@@ -16,9 +16,7 @@ email-validator==2.1.0
 # Authentication & Security
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-# bcrypt 4.0.1은 passlib 1.7.4와 함께 사용할 때 
-# 이전에 안내드린 app/core/security.py 패치 코드가 반드시 필요합니다.
-bcrypt==4.0.1
+bcrypt==3.1.7
 python-multipart==0.0.6
 
 # HTTP Client
