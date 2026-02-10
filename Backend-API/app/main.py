@@ -111,31 +111,31 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
-@app.exception_handler(SQLAlchemyError)
-async def sqlalchemy_exception_handler(request: Request, exc: SQLAlchemyError):
-    """
-    SQLAlchemy 데이터베이스 오류 핸들러
-    데이터베이스 관련 오류를 처리합니다.
-    """
-    logger.error(
-        f"Database error on {request.method} {request.url.path}",
-        exception=str(exc),
-        exc_info=True,
-    )
+# @app.exception_handler(SQLAlchemyError)
+# async def sqlalchemy_exception_handler(request: Request, exc: SQLAlchemyError):
+#     """
+#     SQLAlchemy 데이터베이스 오류 핸들러
+#     데이터베이스 관련 오류를 처리합니다.
+#     """
+#     logger.error(
+#         f"Database error on {request.method} {request.url.path}",
+#         exception=str(exc),
+#         exc_info=True,
+#     )
 
-    # 프로덕션에서는 상세 오류를 숨김
-    if settings.ENVIRONMENT == "production":
-        detail = "A database error occurred"
-    else:
-        detail = str(exc)
+#     # 프로덕션에서는 상세 오류를 숨김
+#     if settings.ENVIRONMENT == "production":
+#         detail = "A database error occurred"
+#     else:
+#         detail = str(exc)
 
-    return JSONResponse(
-        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        content={
-            "detail": detail,
-            "type": "database_error",
-        },
-    )
+#     return JSONResponse(
+#         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+#         content={
+#             "detail": detail,
+#             "type": "database_error",
+#         },
+#     )
 
 
 @app.exception_handler(Exception)
