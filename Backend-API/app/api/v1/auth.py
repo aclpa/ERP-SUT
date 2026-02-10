@@ -7,41 +7,26 @@ Authentication API endpoints
 """
 
 
-from app.core.security import verify_password, get_password_hash
-
 from datetime import timedelta
-
 from typing import Annotated
-
 from urllib.parse import urlencode
 
-
-
 from fastapi import APIRouter, Depends
-
 from pydantic import BaseModel, Field
-
 from sqlalchemy.orm import Session
 
-
-
 from app.config import settings
-
-from app.core.auth import (
-
-    AuthentikClient,
-
-    get_or_create_user_from_authentik,
-
-)
-
+from app.core.auth import AuthentikClient, get_or_create_user_from_authentik
 from app.core.exceptions import AuthenticationError
-
-from app.core.security import create_access_token, create_refresh_token, verify_token
-
+from app.core.security import (
+    create_access_token, 
+    create_refresh_token, 
+    verify_token, 
+    verify_password  # 비밀번호 검증 함수
+)
 from app.dependencies import CurrentUser, get_authentik_client, get_db
-
 from app.schemas.user import CurrentUserResponse
+from app.models.user import User
 
 
 
