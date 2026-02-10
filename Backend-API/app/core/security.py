@@ -12,6 +12,14 @@ from passlib.context import CryptContext
 from app.config import settings
 from app.core.exceptions import InvalidTokenError, TokenExpiredError
 
+# --- bcrypt 호환성 패치 시작 ---
+# passlib 1.7.4가 최신 bcrypt(4.0.0 이상)의 버전을 확인하지 못하는 문제를 해결합니다.
+import bcrypt
+if not hasattr(bcrypt, "__about__"):
+    class BcryptAbout:
+        __version__ = bcrypt.__version__
+    bcrypt.__about__ = BcryptAbout()
+# --- bcrypt 호환성 패치 끝 ---
 
 # Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -23,16 +31,6 @@ def create_access_token(
 ) -> str:
     """
     JWT Access Token 생성
-
-    Args:
-        data: 토큰에 포함할 데이터 (subject, user_id 등)
-        expires_delta: 만료 시간 (기본값: settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-
-    Returns:
-        str: 인코딩된 JWT 토큰
-
-    Example:
-        >>> token = create_access_token({"sub": "user@example.com", "user_id": 1})
     """
     to_encode = data.copy()
 
@@ -58,13 +56,6 @@ def create_refresh_token(
 ) -> str:
     """
     JWT Refresh Token 생성
-
-    Args:
-        data: 토큰에 포함할 데이터
-        expires_delta: 만료 시간 (기본값: 7일)
-
-    Returns:
-        str: 인코딩된 JWT 리프레시 토큰
     """
     to_encode = data.copy()
 
@@ -89,20 +80,6 @@ def create_refresh_token(
 def verify_token(token: str) -> dict[str, Any]:
     """
     JWT 토큰 검증 및 디코딩
-
-    Args:
-        token: 검증할 JWT 토큰
-
-    Returns:
-        dict: 디코딩된 토큰 페이로드
-
-    Raises:
-        TokenExpiredError: 토큰이 만료된 경우
-        InvalidTokenError: 토큰이 유효하지 않은 경우
-
-    Example:
-        >>> payload = verify_token(token)
-        >>> user_id = payload.get("user_id")
     """
     try:
         payload = jwt.decode(
@@ -120,25 +97,13 @@ def verify_token(token: str) -> dict[str, Any]:
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
     비밀번호 검증
-
-    Args:
-        plain_password: 평문 비밀번호
-        hashed_password: 해시된 비밀번호
-
-    Returns:
-        bool: 비밀번호 일치 여부
     """
+    # 위 패치가 적용되면 이 함수가 정상적으로 작동합니다.
     return pwd_context.verify(plain_password, hashed_password)
 
 
 def get_password_hash(password: str) -> str:
     """
     비밀번호 해싱
-
-    Args:
-        password: 평문 비밀번호
-
-    Returns:
-        str: 해시된 비밀번호
     """
     return pwd_context.hash(password)
