@@ -575,11 +575,15 @@ async def dev_login(
     # 2. 유저 존재 여부 및 비밀번호 검증
     # 유저가 없거나, DB에 비밀번호가 없거나, 입력된 비밀번호가 틀린 경우 모두 차단
     if not user:
-        print(f"❌ 로그인 실패: {request.email} 계정이 DB에 없습니다.")
+        print(f"❌ [로그인 실패] 계정 없음: {request.email}")
         raise AuthenticationError("이메일 또는 비밀번호가 올바르지 않습니다.")
 
+    # 디버깅을 위해 DB에서 가져온 값을 출력 (실제 운영 환경에서는 제거해야 함)
+    print(f"🔍 [디버그] 입력된 비밀번호: {request.password}")
+    print(f"🔍 [디버그] DB 내 해시값: {user.hashed_password}")
+
     if not verify_password(request.password, user.hashed_password):
-        print(f"❌ 로그인 실패: {request.email} 계정의 비밀번호가 틀렸습니다.")
+        print(f"❌ [로그인 실패] 비밀번호 불일치: {request.email}")
         raise AuthenticationError("이메일 또는 비밀번호가 올바르지 않습니다.")
 
     # 3. 비활성 유저 체크 (필요 시 활성화)
