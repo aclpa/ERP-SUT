@@ -7,6 +7,7 @@ Authentication API endpoints
 """
 
 
+from app.core.security import verify_password, get_password_hash
 
 from datetime import timedelta
 
@@ -587,6 +588,14 @@ async def dev_login(
     db: Session = Depends(get_db),
 
 ) -> TokenResponse:
+    user = db.query(User).filter(User.email == request.email).first()
+
+    # 2. 유저가 없거나 비밀번호가 일치하지 않으면 에러 발생
+    if not user:
+        raise AuthenticationError("등록되지 않은 이메일입니다.")
+        
+    if not user.hashed_password or not verify_password(request.password, user.hashed_password):
+        raise AuthenticationError("비밀번호가 일치하지 않습니다.")
 
     from app.models.user import User
 
