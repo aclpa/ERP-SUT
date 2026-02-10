@@ -580,117 +580,36 @@ async def refresh_token(
 
 
 @router.post("/login", response_model=TokenResponse)
-
 async def dev_login(
-
     request: DevLoginRequest,
-
     db: Session = Depends(get_db),
-
 ) -> TokenResponse:
+    # 1. 유저 조회 (한 번만 수행)
     user = db.query(User).filter(User.email == request.email).first()
 
-    # 2. 유저가 없거나 비밀번호가 일치하지 않으면 에러 발생
+    # 2. 유저 존재 여부 및 비밀번호 검증
+    # 유저가 없거나, DB에 비밀번호가 없거나, 입력된 비밀번호가 틀린 경우 모두 차단
     if not user:
-        raise AuthenticationError("등록되지 않은 이메일입니다.")
-        
+        raise AuthenticationError("등록되지 않은 사용자입니다.")
+
     if not user.hashed_password or not verify_password(request.password, user.hashed_password):
         raise AuthenticationError("비밀번호가 일치하지 않습니다.")
 
-    from app.models.user import User
-
-    from app.config import settings
-
-
-
-    # 1. 유저 조회
-
-    user = db.query(User).filter(User.email == request.email).first()
-
-
-
-    # 2. 없으면 생성 (로그 분석 결과 반영)
-
-    if not user:
-
-        try:
-
-            username_part = request.email.split("@")[0]
-
-
-
-            new_user = User(
-
-                email=request.email,
-
-                username=username_part,
-
-               
-
-                # 🌟 로그 확인 결과: 이 필드가 필수(NOT NULL)입니다!
-
-                authentik_id=f"auto_{request.email}",
-
-               
-
-                is_active=True,
-
-                is_admin=True,
-
-               
-
-                # 🌟 로그 확인 결과: password 관련 컬럼은 아예 없습니다. (삭제)
-
-                # password="...",
-
-            )
-
-            db.add(new_user)
-
-            db.commit()
-
-            db.refresh(new_user)
-
-            user = new_user
-
-        except Exception as e:
-
-            print(f"❌ 유저 생성 에러: {e}")
-
-            raise e
-
-
-
-    # 3. 비활성 유저 체크
-
+    # 3. 비활성 유저 체크 (필요 시 활성화)
     if not user.is_active:
-
         user.is_active = True
-
         db.commit()
 
-
-
-    # 4. 토큰 발급
-
+    # 4. 토큰 발급 (app.core.security 유틸리티 사용)
     access_token = create_access_token(data={"sub": user.email, "user_id": user.id})
-
     refresh_token = create_refresh_token(data={"sub": user.email, "user_id": user.id})
 
-
-
     return TokenResponse(
-
         access_token=access_token,
-
         refresh_token=refresh_token,
-
         token_type="bearer",
-
         expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
-
     )
-
 
 
 
