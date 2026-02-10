@@ -35,6 +35,11 @@ class User(Base, TimestampMixin):
         index=True,
         comment="사용자명"
     )
+    hashed_password: Mapped[Optional[str]] = mapped_column(
+        String(255),
+        nullable=True,
+        comment="암호화된 비밀번호"
+    )
     full_name: Mapped[Optional[str]] = mapped_column(
         String(200),
         comment="전체 이름"
