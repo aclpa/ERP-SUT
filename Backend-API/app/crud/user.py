@@ -5,38 +5,22 @@ User CRUD operations
 
 import uuid
 from sqlalchemy.orm import Session
-
+from app.core.security import get_password_hash
 from app.crud.base import CRUDBase
 from app.models.user import User
 from app.schemas.user import UserCreate, UserUpdate
 
 
 class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
-    """User 모델에 대한 CRUD 작업"""
-
-    def create(self, db: Session, *, obj_in: UserCreate) -> User:
-        """
-        사용자 생성
-        
-        Args:
-            db: 데이터베이스 세션
-            obj_in: 생성할 사용자 정보
-            
-        Returns:
-            User: 생성된 사용자
-        """
-        # Pydantic 모델을 dict로 변환
+    def create_with_password(self, db: Session, *, obj_in: UserCreate, password: str) -> User:
         db_obj_data = obj_in.model_dump()
-        
-        # avatar_url 자동 생성
-        if not db_obj_data.get("avatar_url"):
-            db_obj_data["avatar_url"] = f"https://api.dicebear.com/7.x/avataaars/svg?seed={db_obj_data['username']}"
-            
-        # authentik_id 자동 생성 (없을 경우)
+        # 비밀번호 해싱 후 저장
+        db_obj_data["hashed_password"] = get_password_hash(password)
+
+        # authentik_id 등 필수 필드 처리 로직 유지
         if not db_obj_data.get("authentik_id"):
-            # 임시로 username과 uuid를 조합하여 생성
-            db_obj_data["authentik_id"] = f"auth-{db_obj_data['username']}-{uuid.uuid4().hex[:8]}"
-            
+            db_obj_data["authentik_id"] = f"local-{db_obj_data['email']}"
+
         db_obj = User(**db_obj_data)
         db.add(db_obj)
         db.commit()
