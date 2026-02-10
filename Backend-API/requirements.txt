@@ -2,9 +2,10 @@
 fastapi==0.109.0
 uvicorn[standard]==0.27.0
 
-# Database
+# Database 섹션 수정
 sqlalchemy==2.0.36
 alembic==1.14.0
+psycopg2-binary==2.9.9  # 버전을 명시하여 확실히 추가
 psycopg[binary]==3.2.3
 greenlet==3.1.1
 
