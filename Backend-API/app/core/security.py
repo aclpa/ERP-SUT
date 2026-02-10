@@ -12,9 +12,9 @@ from passlib.context import CryptContext
 from app.config import settings
 from app.core.exceptions import InvalidTokenError, TokenExpiredError
 
-# --- bcrypt 호환성 패치 시작 ---
-# passlib 1.7.4가 최신 bcrypt(4.0.0 이상)의 버전을 확인하지 못하는 문제를 해결합니다.
+# --- bcrypt 호환성 패치 시작 (반드시 pwd_context 정의보다 위에 있어야 합니다) ---
 import bcrypt
+# passlib 1.7.4가 최신 bcrypt(4.0.0 이상)를 인식하지 못해 발생하는 72바이트 오류를 해결합니다.
 if not hasattr(bcrypt, "__about__"):
     class BcryptAbout:
         __version__ = bcrypt.__version__
@@ -98,8 +98,12 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
     비밀번호 검증
     """
-    # 위 패치가 적용되면 이 함수가 정상적으로 작동합니다.
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        return pwd_context.verify(plain_password, hashed_password)
+    except Exception as e:
+        # 에러 발생 시 로그 확인을 위해 추가
+        print(f"❌ verify_password 내부 에러: {e}")
+        return False
 
 
 def get_password_hash(password: str) -> str:
