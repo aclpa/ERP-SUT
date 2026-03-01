@@ -7,7 +7,7 @@
         <div class="text-subtitle2 text-grey-7">Manage your project portfolio</div>
       </div>
       <div class="col-auto">
-        <q-btn color="primary" icon="add" label="New Project" @click="showCreateDialog = true" />
+        <q-btn size="lg" color="primary" icon="add" label="New Project" @click="showCreateDialog = true" />
       </div>
     </div>
 
