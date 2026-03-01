@@ -30,7 +30,7 @@
         </q-btn>
 
         <!-- Dark Mode Toggle -->
-        <!-- <q-btn
+        <q-btn
           flat
           dense
           round
@@ -39,7 +39,7 @@
           class="q-mr-sm"
         >
           <q-tooltip>{{ $q.dark.isActive ? '라이트 모드' : '다크 모드' }}</q-tooltip>
-        </q-btn> -->
+        </q-btn>
 
         <!-- Notifications (Placeholder) -->
         <q-btn flat dense round icon="notifications" class="q-mr-sm">
@@ -268,7 +268,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-// import { useQuasar } from 'quasar';
+import { useQuasar } from 'quasar'; // import 확인
 import { useAuth } from 'src/composables/useAuth';
 import PageBreadcrumbs from 'src/components/common/PageBreadcrumbs.vue';
 import GlobalSearch from 'src/components/common/GlobalSearch.vue';
@@ -278,7 +278,7 @@ import GlobalSearch from 'src/components/common/GlobalSearch.vue';
 // ============================================
 
 const route = useRoute();
-// const $q = useQuasar();
+const $q = useQuasar(); // 주석 완전히 해제됨!
 const { user, userFullName, userInitials, logout } = useAuth();
 
 // ============================================
@@ -296,11 +296,11 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
-// function toggleDarkMode() {
-//   $q.dark.toggle();
-//   // Save preference to localStorage
-//   localStorage.setItem('darkMode', String($q.dark.isActive));
-// }
+function toggleDarkMode() {
+  $q.dark.toggle();
+  // Save preference to localStorage
+  localStorage.setItem('darkMode', String($q.dark.isActive));
+}
 
 function isActiveRoute(path: string): boolean {
   return route.path.startsWith(path);
@@ -318,40 +318,13 @@ async function handleLogout() {
 // Initialize dark mode from localStorage
 // ============================================
 
-// const savedDarkMode = localStorage.getItem('darkMode');
-// if (savedDarkMode === 'true') {
-//   $q.dark.set(true);
-// } else if (savedDarkMode === 'false') {
-//   $q.dark.set(false);
-// } else {
-//   // Auto detect based on system preference
-//   $q.dark.set('auto');
-// }
+const savedDarkMode = localStorage.getItem('darkMode');
+if (savedDarkMode === 'true') {
+  $q.dark.set(true);
+} else if (savedDarkMode === 'false') {
+  $q.dark.set(false);
+} else {
+  // 기본값을 라이트 모드로 설정 (따옴표 없는 false)
+  $q.dark.set(false);
+}
 </script>
-
-<style scoped lang="scss">
-.q-toolbar {
-  min-height: 64px;
-}
-
-.q-drawer {
-  .q-item {
-    border-radius: 8px;
-    margin: 4px 8px;
-
-    &.q-router-link--active {
-      font-weight: 600;
-    }
-  }
-
-  .q-expansion-item {
-    .q-item {
-      margin-left: 0;
-    }
-  }
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-</style>
