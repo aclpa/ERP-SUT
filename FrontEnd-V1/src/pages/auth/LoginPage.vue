@@ -18,7 +18,6 @@
 
       <!-- Password Input -->
       <q-input
-        style="max-width: 300px;"
         v-model="form.password"
         :type="showPassword ? 'text' : 'password'"
         label="비밀번호"
