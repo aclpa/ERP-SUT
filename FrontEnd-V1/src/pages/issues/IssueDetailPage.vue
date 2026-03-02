@@ -8,7 +8,7 @@
       </div>
       <q-space />
       <q-btn v-if="issue" flat icon="edit" label="수정" color="primary" @click="handleEdit" />
-      <q-btn v-if="issue" flat icon="delete" label="삭제" color="negative" @click="handleDelete" />
+      <q-btn v-if="issue" flat icon="delete" label="delete" color="negative" @click="handleDelete" />
     </div>
 
     <div v-if="loading" class="row justify-center q-py-xl">

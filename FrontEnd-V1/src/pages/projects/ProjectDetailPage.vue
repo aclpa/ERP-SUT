@@ -201,7 +201,7 @@
 
         <q-card-actions align="right">
           <q-btn flat label="Cancel" color="grey" v-close-popup />
-          <q-btn flat label="Delete" color="negative" @click="confirmDelete" />
+          <q-btn flat label="삭제" color="negative" @click="confirmDelete" />
         </q-card-actions>
       </q-card>
     </q-dialog>
