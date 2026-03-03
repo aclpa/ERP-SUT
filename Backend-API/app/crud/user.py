@@ -1,10 +1,9 @@
 """
-User CRUD operations
-사용자 관련 CRUD 작업
+User CRUD operations - authentik 완전 제거
 """
 
-import uuid
 from sqlalchemy.orm import Session
+
 from app.core.security import get_password_hash
 from app.crud.base import CRUDBase
 from app.models.user import User
@@ -12,123 +11,31 @@ from app.schemas.user import UserCreate, UserUpdate
 
 
 class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
-    def create_with_password(self, db: Session, *, obj_in: UserCreate, password: str) -> User:
-        db_obj_data = obj_in.model_dump()
-        # 비밀번호 해싱 후 저장
-        db_obj_data["hashed_password"] = get_password_hash(password)
 
-        # authentik_id 등 필수 필드 처리 로직 유지
-        if not db_obj_data.get("authentik_id"):
-            db_obj_data["authentik_id"] = f"local-{db_obj_data['email']}"
+    def create(self, db: Session, *, obj_in: UserCreate | dict) -> User:
+        """사용자 생성 - 비밀번호 자동 해싱"""
+        if isinstance(obj_in, dict):
+            data = obj_in.copy()
+        else:
+            data = obj_in.model_dump()
 
-        db_obj = User(**db_obj_data)
+        # password → hashed_password 변환
+        password = data.pop("password", None)
+        data["hashed_password"] = get_password_hash(password) if password else None
+
+        db_obj = User(**data)
         db.add(db_obj)
         db.commit()
         db.refresh(db_obj)
         return db_obj
 
     def get_by_email(self, db: Session, *, email: str) -> User | None:
-        """
-        이메일로 사용자 조회
-
-        Args:
-            db: 데이터베이스 세션
-            email: 이메일 주소
-
-        Returns:
-            User | None: 조회된 사용자 또는 None
-        """
         return db.query(User).filter(User.email == email).first()
 
     def get_by_username(self, db: Session, *, username: str) -> User | None:
-        """
-        사용자명으로 사용자 조회
-
-        Args:
-            db: 데이터베이스 세션
-            username: 사용자명
-
-        Returns:
-            User | None: 조회된 사용자 또는 None
-        """
         return db.query(User).filter(User.username == username).first()
 
-    def get_by_authentik_id(self, db: Session, *, authentik_id: str) -> User | None:
-        """
-        Authentik ID로 사용자 조회
-
-        Args:
-            db: 데이터베이스 세션
-            authentik_id: Authentik 사용자 ID
-
-        Returns:
-            User | None: 조회된 사용자 또는 None
-        """
-        return db.query(User).filter(User.authentik_id == authentik_id).first()
-
-    def get_active_users(
-        self,
-        db: Session,
-        *,
-        skip: int = 0,
-        limit: int = 100
-    ) -> list[User]:
-        """
-        활성 사용자 목록 조회
-
-        Args:
-            db: 데이터베이스 세션
-            skip: 건너뛸 레코드 수
-            limit: 조회할 최대 레코드 수
-
-        Returns:
-            list[User]: 활성 사용자 목록
-        """
-        return (
-            db.query(User)
-            .filter(User.is_active == True)
-            .offset(skip)
-            .limit(limit)
-            .all()
-        )
-
-    def get_admin_users(
-        self,
-        db: Session,
-        *,
-        skip: int = 0,
-        limit: int = 100
-    ) -> list[User]:
-        """
-        관리자 사용자 목록 조회
-
-        Args:
-            db: 데이터베이스 세션
-            skip: 건너뛸 레코드 수
-            limit: 조회할 최대 레코드 수
-
-        Returns:
-            list[User]: 관리자 사용자 목록
-        """
-        return (
-            db.query(User)
-            .filter(User.is_admin == True)
-            .offset(skip)
-            .limit(limit)
-            .all()
-        )
-
     def activate(self, db: Session, *, user_id: int) -> User | None:
-        """
-        사용자 활성화
-
-        Args:
-            db: 데이터베이스 세션
-            user_id: 사용자 ID
-
-        Returns:
-            User | None: 활성화된 사용자 또는 None
-        """
         user = self.get(db, id=user_id)
         if user:
             user.is_active = True
@@ -138,16 +45,6 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         return user
 
     def deactivate(self, db: Session, *, user_id: int) -> User | None:
-        """
-        사용자 비활성화
-
-        Args:
-            db: 데이터베이스 세션
-            user_id: 사용자 ID
-
-        Returns:
-            User | None: 비활성화된 사용자 또는 None
-        """
         user = self.get(db, id=user_id)
         if user:
             user.is_active = False
@@ -156,6 +53,8 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             db.refresh(user)
         return user
 
+    def remove(self, db: Session, *, id: int) -> User | None:
+        return self.delete(db, id=id)
 
-# CRUD 인스턴스 생성
+
 crud_user = CRUDUser(User)
