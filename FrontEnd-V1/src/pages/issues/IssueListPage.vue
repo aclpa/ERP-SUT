@@ -62,21 +62,6 @@
               />
             </div>
 
-            <!-- Status Filter -->
-            <div class="col-12 col-md-2">
-              <q-select
-                v-model="issueStore.statusFilter"
-                :options="statusOptions"
-                label="Status"
-                outlined
-                dense
-                clearable
-                emit-value
-                map-options
-                @update:model-value="loadIssues"
-              />
-            </div>
-
             <!-- Priority Filter -->
             <div class="col-12 col-md-2">
               <q-select
@@ -276,14 +261,6 @@ const editingIssue = ref<Issue | null>(null);
 const projectOptions = ref<{ label: string; value: number }[]>([]);
 const sprintOptions = ref<{ label: string; value: number }[]>([]);
 
-const statusOptions = [
-  { label: 'To Do', value: 'todo' },
-  { label: 'In Progress', value: 'in_progress' },
-  { label: 'In Review', value: 'in_review' },
-  { label: 'Testing', value: 'testing' },
-  { label: 'Done', value: 'done' },
-  { label: 'Closed', value: 'closed' },
-];
 
 const priorityOptions = [
   { label: 'Low', value: 'low' },
