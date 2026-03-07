@@ -50,6 +50,7 @@ import IssueCard from 'src/components/issue/IssueCard.vue';
 // 1단계에서 설치한 'vuedraggable'과 필요한 타입들을 가져옵니다.
 import draggable from 'vuedraggable';
 import type { Issue, IssueStatus } from 'src/types/models.types';
+import { useQuasar } from 'quasar'
 
 // vuedraggable 이벤트의 타입을 명확하게 정의합니다. (TypeScript 오류 방지)
 interface DraggableChangeEvent {
@@ -60,6 +61,7 @@ interface DraggableChangeEvent {
 
 // Pinia 저장소를 가져옵니다.
 const issueStore = useIssueStore();
+const $q = useQuasar()
 // '할 일' 등 상태 목록을 가져옵니다.
 const statuses = ISSUE_STATUS_OPTIONS;
 
@@ -68,24 +70,41 @@ onMounted(() => {
   // void를 붙여 ESLint 오류(no-floating-promises)를 해결합니다.
   void issueStore.fetchIssues({ size: 1000 });
 });
-
+const allowedTransitions: Record<IssueStatus, IssueStatus[]> = {
+  'todo': ['in_progress'],
+  'in_progress': ['in_review', 'todo'],
+  'in_review': ['testing', 'in_progress'],
+  'testing': ['done', 'in_review'],
+  'done': ['closed', 'testing'],
+  'closed': []
+}
 // 카드를 드래그해서 다른 열에 놓았을 때 실행될 함수
 const handleMove = async (event: DraggableChangeEvent, newStatus: IssueStatus) => {
-  // `event.added`는 카드가 새로운 열로 '추가'되었을 때만 존재합니다.
   if (event.added) {
     const movedIssue: Issue = event.added.element;
-    console.log(`'${movedIssue.title}' 카드가 '${newStatus}' 상태로 이동됨`);
+    const currentStatus = movedIssue.status
 
-    // Pinia 스토어를 통해 백엔드에 상태 변경을 요청합니다.
+    // 비유효 전이 차단
+    if (!allowedTransitions[currentStatus].includes(newStatus)) {
+      $q.notify({
+        type: 'negative',                                            // ← 추가
+        message: `${currentStatus} → ${newStatus} 로 직접 이동할 수 없습니다.`  // ← 추가
+      })
+      console.warn(`비유효 전이: ${currentStatus} → ${newStatus}`)
+      void issueStore.fetchIssues({ size: 1000 }) // 원래 위치로 되돌림
+      return
+    }
+
     try {
-      await issueStore.updateStatus(movedIssue.id, newStatus);
+      await issueStore.updateStatus(movedIssue.id, newStatus)
     } catch (error) {
-      console.error('상태 변경 실패:', error);
-      // 만약 실패하면, 화면을 원래대로 되돌리기 위해 데이터를 다시 불러옵니다.
-      void issueStore.fetchIssues({ size: 1000 });
+      console.error('상태 변경 실패:', error)
+      void issueStore.fetchIssues({ size: 1000 })
     }
   }
 };
+
+
 </script>
 
 <style lang="scss" scoped>
