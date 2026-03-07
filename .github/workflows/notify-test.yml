@@ -1,0 +1,23 @@
+name: 🔔 Notify Test Repo on Push
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send dispatch to test repository
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.TEST_REPO_TOKEN }}
+          repository: aclpa/playwright
+          event-type: erp-updated
+          client-payload: |
+            {
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}",
+              "actor": "${{ github.actor }}"
+            }
+              

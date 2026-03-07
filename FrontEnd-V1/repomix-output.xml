@@ -40,6 +40,157 @@ The content is organized as follows:
 </file_summary>
 
 <directory_structure>
+public/
+  icons/
+    favicon-128x128.png
+    favicon-16x16.png
+    favicon-32x32.png
+    favicon-96x96.png
+  favicon.ico
+src/
+  api/
+    auth.api.ts
+    client.ts
+    dashboard.api.ts
+    deployments.api.ts
+    issues.api.ts
+    members.api.ts
+    projects.api.ts
+    servers.api.ts
+    services.api.ts
+    sprints.api.ts
+    teams.api.ts
+    users.api.ts
+  assets/
+    quasar-logo-vertical.svg
+  boot/
+    .gitkeep
+    pinia.ts
+  components/
+    charts/
+      BurndownChart.vue
+      DeploymentFrequency.vue
+      IssueDistribution.vue
+    common/
+      ConfirmDialog.vue
+      EmptyState.vue
+      GlobalSearch.vue
+      LoadingSkeleton.vue
+      PageBreadcrumbs.vue
+      Pagination.vue
+      StatusBadge.vue
+    dashboard/
+      ActivityFeed.vue
+      DeploymentStatus.vue
+      MyIssues.vue
+      RecentProjects.vue
+      SprintProgress.vue
+      StatsCard.vue
+    deployment/
+      DeploymentCard.vue
+      DeploymentForm.vue
+      DeploymentHistory.vue
+      RollbackDialog.vue
+    issue/
+      IssueCard.vue
+      IssueForm.vue
+    project/
+      ProjectCard.vue
+      ProjectForm.vue
+      ProjectStats.vue
+    server/
+      ServerCard.vue
+      ServerForm.vue
+    service/
+      ServiceCard.vue
+      ServiceForm.vue
+    sprint/
+      SprintCard.vue
+      SprintForm.vue
+    team/
+      TeamCard.vue
+      TeamForm.vue
+      TeamMemberEditDialog.vue
+      TeamMemberList.vue
+    users/
+      UserCreateDialog.vue
+      UserForm.vue
+      UserListPage.vue
+    EssentialLink.vue
+    ExampleComponent.vue
+    models.ts
+  composables/
+    useAuth.ts
+    useDialog.ts
+    useFilters.ts
+    useLoading.ts
+    useNotify.ts
+    usePagination.ts
+  css/
+    app.scss
+    quasar.variables.scss
+  layouts/
+    AuthLayout.vue
+    MainLayout.vue
+  pages/
+    auth/
+      CallbackPage.vue
+      LoginPage.vue
+      UnauthorizedPage.vue
+    dashboard/
+      DashboardPage.vue
+    deployments/
+      DeploymentListPage.vue
+    issues/
+      IssueDetailPage.vue
+      IssueListPage.vue
+    profile/
+      ProfilePage.vue
+    projects/
+      ProjectDetailPage.vue
+      ProjectListPage.vue
+    servers/
+      ServerListPage.vue
+    services/
+      ServiceListPage.vue
+    sprints/
+      SprintDetailPage.vue
+      SprintListPage.vue
+    teams/
+      TeamDetailPage.vue
+      TeamListPage.vue
+    users/
+      UserListPage.vue
+    ErrorNotFound.vue
+    ErrorServerError.vue
+    IndexPage.vue
+    KanbanPage.vue
+  router/
+    guards.ts
+    index.ts
+    routes.ts
+  stores/
+    auth.store.ts
+    deployment.store.ts
+    issue.store.ts
+    project.store.ts
+    server.store.ts
+    service.store.ts
+    sprint.store.ts
+    team.store.ts
+    ui.store.ts
+    user.store.ts
+  types/
+    api.types.ts
+    common.types.ts
+    models.types.ts
+  utils/
+    constants.ts
+    formatters.ts
+    helpers.ts
+    validators.ts
+  App.vue
+  env.d.ts
 .editorconfig
 .env.development
 .env.production
@@ -52,763 +203,13 @@ eslint.config.js
 index.html
 package.json
 postcss.config.js
-public/favicon.ico
-public/icons/favicon-128x128.png
-public/icons/favicon-16x16.png
-public/icons/favicon-32x32.png
-public/icons/favicon-96x96.png
 quasar.config.ts
 README.md
-src/api/auth.api.ts
-src/api/client.ts
-src/api/dashboard.api.ts
-src/api/deployments.api.ts
-src/api/issues.api.ts
-src/api/members.api.ts
-src/api/projects.api.ts
-src/api/servers.api.ts
-src/api/services.api.ts
-src/api/sprints.api.ts
-src/api/teams.api.ts
-src/api/users.api.ts
-src/App.vue
-src/assets/quasar-logo-vertical.svg
-src/boot/.gitkeep
-src/boot/pinia.ts
-src/components/charts/BurndownChart.vue
-src/components/charts/DeploymentFrequency.vue
-src/components/charts/IssueDistribution.vue
-src/components/common/ConfirmDialog.vue
-src/components/common/EmptyState.vue
-src/components/common/GlobalSearch.vue
-src/components/common/LoadingSkeleton.vue
-src/components/common/PageBreadcrumbs.vue
-src/components/common/Pagination.vue
-src/components/common/StatusBadge.vue
-src/components/dashboard/ActivityFeed.vue
-src/components/dashboard/DeploymentStatus.vue
-src/components/dashboard/MyIssues.vue
-src/components/dashboard/RecentProjects.vue
-src/components/dashboard/SprintProgress.vue
-src/components/dashboard/StatsCard.vue
-src/components/deployment/DeploymentCard.vue
-src/components/deployment/DeploymentForm.vue
-src/components/deployment/DeploymentHistory.vue
-src/components/deployment/RollbackDialog.vue
-src/components/EssentialLink.vue
-src/components/ExampleComponent.vue
-src/components/issue/IssueCard.vue
-src/components/issue/IssueForm.vue
-src/components/models.ts
-src/components/project/ProjectCard.vue
-src/components/project/ProjectForm.vue
-src/components/project/ProjectStats.vue
-src/components/server/ServerCard.vue
-src/components/server/ServerForm.vue
-src/components/service/ServiceCard.vue
-src/components/service/ServiceForm.vue
-src/components/sprint/SprintCard.vue
-src/components/sprint/SprintForm.vue
-src/components/team/TeamCard.vue
-src/components/team/TeamForm.vue
-src/components/team/TeamMemberEditDialog.vue
-src/components/team/TeamMemberList.vue
-src/components/users/UserCreateDialog.vue
-src/components/users/UserForm.vue
-src/components/users/UserListPage.vue
-src/composables/useAuth.ts
-src/composables/useDialog.ts
-src/composables/useFilters.ts
-src/composables/useLoading.ts
-src/composables/useNotify.ts
-src/composables/usePagination.ts
-src/css/app.scss
-src/css/quasar.variables.scss
-src/env.d.ts
-src/layouts/AuthLayout.vue
-src/layouts/MainLayout.vue
-src/pages/auth/CallbackPage.vue
-src/pages/auth/LoginPage.vue
-src/pages/auth/UnauthorizedPage.vue
-src/pages/dashboard/DashboardPage.vue
-src/pages/deployments/DeploymentListPage.vue
-src/pages/ErrorNotFound.vue
-src/pages/ErrorServerError.vue
-src/pages/IndexPage.vue
-src/pages/issues/IssueDetailPage.vue
-src/pages/issues/IssueListPage.vue
-src/pages/KanbanPage.vue
-src/pages/profile/ProfilePage.vue
-src/pages/projects/ProjectDetailPage.vue
-src/pages/projects/ProjectListPage.vue
-src/pages/servers/ServerListPage.vue
-src/pages/services/ServiceListPage.vue
-src/pages/sprints/SprintDetailPage.vue
-src/pages/sprints/SprintListPage.vue
-src/pages/teams/TeamDetailPage.vue
-src/pages/teams/TeamListPage.vue
-src/pages/users/UserListPage.vue
-src/router/guards.ts
-src/router/index.ts
-src/router/routes.ts
-src/stores/auth.store.ts
-src/stores/deployment.store.ts
-src/stores/issue.store.ts
-src/stores/project.store.ts
-src/stores/server.store.ts
-src/stores/service.store.ts
-src/stores/sprint.store.ts
-src/stores/team.store.ts
-src/stores/ui.store.ts
-src/stores/user.store.ts
-src/types/api.types.ts
-src/types/common.types.ts
-src/types/models.types.ts
-src/utils/constants.ts
-src/utils/formatters.ts
-src/utils/helpers.ts
-src/utils/validators.ts
 tsconfig.json
 </directory_structure>
 
 <files>
 This section contains the contents of the repository's files.
-
-<file path=".editorconfig">
-[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
-charset = utf-8
-indent_size = 2
-indent_style = space
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
-</file>
-
-<file path=".env.development">
-# DevFlow ERP - Development Environment Variables
-
-# Backend API URL
-VITE_API_URL=http://127.0.0.1:8000/api/v1
-# Authentik SSO URL
-VITE_AUTH_URL=http://localhost:9000
-
-# Application Settings
-VITE_APP_TITLE=DevFlow ERP
-
-# Pagination
-VITE_ITEMS_PER_PAGE=20
-
-# API Request Timeout (ms)
-VITE_API_TIMEOUT=30000
-</file>
-
-<file path=".env.production">
-# DevFlow ERP - Production Environment Variables
-
-# Backend API URL
-VITE_API_URL=https://api.devflow.com
-
-# Authentik SSO URL
-VITE_AUTH_URL=https://auth.devflow.com
-
-# Application Settings
-VITE_APP_TITLE=DevFlow ERP
-
-# Pagination
-VITE_ITEMS_PER_PAGE=20
-
-# API Request Timeout (ms)
-VITE_API_TIMEOUT=30000
-</file>
-
-<file path=".gitignore">
-.DS_Store
-.thumbs.db
-node_modules
-
-# Quasar core related directories
-.quasar
-/dist
-/quasar.config.*.temporary.compiled*
-
-# Cordova related directories and files
-/src-cordova/node_modules
-/src-cordova/platforms
-/src-cordova/plugins
-/src-cordova/www
-
-# Capacitor related directories and files
-/src-capacitor/www
-/src-capacitor/node_modules
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Editor directories and files
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-
-# local .env files
-.env.local*
-</file>
-
-<file path=".npmrc">
-# pnpm-related options
-shamefully-hoist=true
-strict-peer-dependencies=false
-# to get the latest compatible packages when creating the project https://github.com/pnpm/pnpm/issues/6463
-resolution-mode=highest
-</file>
-
-<file path=".prettierrc.json">
-{
-  "$schema": "https://json.schemastore.org/prettierrc",
-  "singleQuote": true,
-  "printWidth": 100
-}
-</file>
-
-<file path="Dockerfile">
-# ============================================
-# Stage 1: Build Stage
-# ============================================
-FROM node:20-alpine AS build
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy application files
-COPY . .
-
-# Build the application
-RUN npm run build
-
-# ============================================
-# Stage 2: Production Stage
-# ============================================
-FROM nginx:alpine
-
-# Copy built files from build stage
-COPY --from=build /app/dist/spa /usr/share/nginx/html
-
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port
-EXPOSE 80
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost/ || exit 1
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
-</file>
-
-<file path="Dockerfile.dev">
-# ============================================
-# Development Dockerfile with Hot Reload
-# ============================================
-FROM node:20-alpine
-
-WORKDIR /app
-
-# Copy all files first (needed for quasar prepare)
-COPY . .
-
-# Copy Docker environment file
-COPY .env.development .env
-
-# Install dependencies (this will run quasar prepare as postinstall)
-RUN npm ci
-
-# Expose Quasar dev server port
-EXPOSE 9000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:9000/ || exit 1
-
-# Start development server
-CMD ["npm", "run", "dev"]
-</file>
-
-<file path="eslint.config.js">
-import js from '@eslint/js';
-import globals from 'globals';
-import pluginVue from 'eslint-plugin-vue';
-import pluginQuasar from '@quasar/app-vite/eslint';
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
-import prettierSkipFormatting from '@vue/eslint-config-prettier/skip-formatting';
-
-export default defineConfigWithVueTs(
-  {
-    /**
-     * Ignore the following files.
-     * Please note that pluginQuasar.configs.recommended() already ignores
-     * the "node_modules" folder for you (and all other Quasar project
-     * relevant folders and files).
-     *
-     * ESLint requires "ignores" key to be the only one in this object
-     */
-    // ignores: []
-  },
-
-  pluginQuasar.configs.recommended(),
-  js.configs.recommended,
-
-  /**
-   * https://eslint.vuejs.org
-   *
-   * pluginVue.configs.base
-   *   -> Settings and rules to enable correct ESLint parsing.
-   * pluginVue.configs[ 'flat/essential']
-   *   -> base, plus rules to prevent errors or unintended behavior.
-   * pluginVue.configs["flat/strongly-recommended"]
-   *   -> Above, plus rules to considerably improve code readability and/or dev experience.
-   * pluginVue.configs["flat/recommended"]
-   *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
-   */
-  pluginVue.configs['flat/essential'],
-
-  {
-    files: ['**/*.ts', '**/*.vue'],
-    rules: {
-      '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
-    },
-  },
-  // https://github.com/vuejs/eslint-config-typescript
-  vueTsConfigs.recommendedTypeChecked,
-
-  {
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-
-      globals: {
-        ...globals.browser,
-        ...globals.node, // SSR, Electron, config files
-        process: 'readonly', // process.env.*
-        ga: 'readonly', // Google Analytics
-        cordova: 'readonly',
-        Capacitor: 'readonly',
-        chrome: 'readonly', // BEX related
-        browser: 'readonly', // BEX related
-      },
-    },
-
-    // add your custom rules here
-    rules: {
-      'prefer-promise-reject-errors': 'off',
-
-      // allow debugger during development only
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    },
-  },
-
-  {
-    files: ['src-pwa/custom-service-worker.ts'],
-    languageOptions: {
-      globals: {
-        ...globals.serviceworker,
-      },
-    },
-  },
-
-  prettierSkipFormatting,
-);
-</file>
-
-<file path="index.html">
-<!doctype html>
-<html>
-  <head>
-    <title><%= productName %></title>
-
-    <meta charset="utf-8" />
-    <meta name="description" content="<%= productDescription %>" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta
-      name="viewport"
-      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
-    />
-
-    <link rel="icon" type="image/png" sizes="128x128" href="icons/favicon-128x128.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png" />
-    <link rel="icon" type="image/ico" href="favicon.ico" />
-  </head>
-  <body>
-    <!-- quasar:entry-point -->
-  </body>
-</html>
-</file>
-
-<file path="package.json">
-{
-  "name": "devflow-erp-fe-v1",
-  "version": "0.0.1",
-  "description": "devflow erp frontend server",
-  "productName": "DevFlow ERP",
-  "author": "[SeongHyeonJeon]nukunga <nukunga123@gmail.com>",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
-    "build": "quasar build",
-    "postinstall": "quasar prepare"
-  },
-  "dependencies": {
-    "@quasar/extras": "^1.16.4",
-    "axios": "^1.12.2",
-    "chart.js": "^4.5.1",
-    "date-fns": "^4.1.0",
-    "pinia": "^3.0.3",
-    "quasar": "^2.16.0",
-    "vue": "^3.5.22",
-    "vue-chartjs": "^5.3.2",
-    "vue-router": "^4.0.12",
-    "vuedraggable": "^4.1.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.14.0",
-    "@quasar/app-vite": "^2.1.0",
-    "@types/node": "^20.5.9",
-    "@vue/eslint-config-prettier": "^10.1.0",
-    "@vue/eslint-config-typescript": "^14.4.0",
-    "autoprefixer": "^10.4.2",
-    "eslint": "^9.14.0",
-    "eslint-plugin-vue": "^10.4.0",
-    "globals": "^16.4.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.9.2",
-    "vite-plugin-checker": "^0.11.0",
-    "vue-eslint-parser": "^10.2.0",
-    "vue-tsc": "^3.0.7"
-  },
-  "engines": {
-    "node": "^28 || ^26 || ^24 || ^22 || ^20",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
-  }
-}
-</file>
-
-<file path="postcss.config.js">
-// https://github.com/michael-ciniawsky/postcss-load-config
-
-import autoprefixer from 'autoprefixer';
-// import rtlcss from 'postcss-rtlcss'
-
-export default {
-  plugins: [
-    // https://github.com/postcss/autoprefixer
-    autoprefixer({
-      overrideBrowserslist: [
-        'last 4 Chrome versions',
-        'last 4 Firefox versions',
-        'last 4 Edge versions',
-        'last 4 Safari versions',
-        'last 4 Android versions',
-        'last 4 ChromeAndroid versions',
-        'last 4 FirefoxAndroid versions',
-        'last 4 iOS versions',
-      ],
-    }),
-
-    // https://github.com/elchininet/postcss-rtlcss
-    // If you want to support RTL css, then
-    // 1. yarn/pnpm/bun/npm install postcss-rtlcss
-    // 2. optionally set quasar.config.js > framework > lang to an RTL language
-    // 3. uncomment the following line (and its import statement above):
-    // rtlcss()
-  ],
-};
-</file>
-
-<file path="quasar.config.ts">
-// Configuration for your app
-// https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
-
-import { defineConfig } from '#q-app/wrappers';
-
-export default defineConfig((/* ctx */) => {
-  return {
-    // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
-    // preFetch: true,
-
-    // app boot file (/src/boot)
-    // --> boot files are part of "main.js"
-    // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['pinia'],
-
-    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
-    css: ['app.scss'],
-
-    // https://github.com/quasarframework/quasar/tree/dev/extras
-    extras: [
-      // 'ionicons-v4',
-      // 'mdi-v7',
-      // 'fontawesome-v6',
-      // 'eva-icons',
-      // 'themify',
-      // 'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
-      'roboto-font', // optional, you are not bound to it
-      'material-icons', // optional, you are not bound to it
-    ],
-
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
-    build: {
-      target: {
-        browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
-        node: 'node20',
-      },
-
-      typescript: {
-        strict: true,
-        vueShim: true,
-        // extendTsConfig (tsConfig) {}
-      },
-
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
-      // vueRouterBase,
-      // vueDevtools,
-      // vueOptionsAPI: false,
-
-      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
-
-      // publicPath: '/',
-      // analyze: true,
-      // env: {},
-      // rawDefine: {}
-      // ignorePublicFolder: true,
-      // minify: false,
-      // polyfillModulePreload: true,
-      // distDir
-
-      // extendViteConf (viteConf) {},
-      // viteVuePluginOptions: {},
-
-      vitePlugins: [
-        [
-          'vite-plugin-checker',
-          {
-            vueTsc: true,
-            eslint: {
-              lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{ts,js,mjs,cjs,vue}"',
-              useFlatConfig: true,
-            },
-          },
-          { server: false },
-        ],
-      ],
-    },
-
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
-    devServer: {
-      // https: true,
-      port: 8080, // Set the development server port to 8080
-      open: true, // opens browser window automatically
-    },
-
-    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
-    framework: {
-      config: {
-        dark: false,
-      },
-
-      // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
-
-      // For special cases outside of where the auto-import strategy can have an impact
-      // (like functional components as one of the examples),
-      // you can manually specify Quasar components/directives to be available everywhere:
-      //
-      // components: [],
-      // directives: [],
-
-      // Quasar plugins
-      plugins: ['Notify', 'Dialog', 'Loading'],
-    },
-
-    // animations: 'all', // --- includes all animations
-    // https://v2.quasar.dev/options/animations
-    animations: [],
-
-    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#sourcefiles
-    // sourceFiles: {
-    //   rootComponent: 'src/App.vue',
-    //   router: 'src/router/index',
-    //   store: 'src/store/index',
-    //   pwaRegisterServiceWorker: 'src-pwa/register-service-worker',
-    //   pwaServiceWorker: 'src-pwa/custom-service-worker',
-    //   pwaManifestFile: 'src-pwa/manifest.json',
-    //   electronMain: 'src-electron/electron-main',
-    //   electronPreload: 'src-electron/electron-preload'
-    //   bexManifestFile: 'src-bex/manifest.json
-    // },
-
-    // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
-    ssr: {
-      prodPort: 3000, // The default port that the production server should use
-      // (gets superseded if process.env.PORT is specified at runtime)
-
-      middlewares: [
-        'render', // keep this as last one
-      ],
-
-      // extendPackageJson (json) {},
-      // extendSSRWebserverConf (esbuildConf) {},
-
-      // manualStoreSerialization: true,
-      // manualStoreSsrContextInjection: true,
-      // manualStoreHydration: true,
-      // manualPostHydrationTrigger: true,
-
-      pwa: false,
-      // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
-
-      // pwaExtendGenerateSWOptions (cfg) {},
-      // pwaExtendInjectManifestOptions (cfg) {}
-    },
-
-    // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
-    pwa: {
-      workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
-      // swFilename: 'sw.js',
-      // manifestFilename: 'manifest.json',
-      // extendManifestJson (json) {},
-      // useCredentialsForManifestTag: true,
-      // injectPwaMetaTags: false,
-      // extendPWACustomSWConf (esbuildConf) {},
-      // extendGenerateSWOptions (cfg) {},
-      // extendInjectManifestOptions (cfg) {}
-    },
-
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
-    cordova: {
-      // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-    },
-
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
-    capacitor: {
-      hideSplashscreen: true,
-    },
-
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/configuring-electron
-    electron: {
-      // extendElectronMainConf (esbuildConf) {},
-      // extendElectronPreloadConf (esbuildConf) {},
-
-      // extendPackageJson (json) {},
-
-      // Electron preload scripts (if any) from /src-electron, WITHOUT file extension
-      preloadScripts: ['electron-preload'],
-
-      // specify the debugging port to use for the Electron app when running in development mode
-      inspectPort: 5858,
-
-      bundler: 'packager', // 'packager' or 'builder'
-
-      packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-        // Windows only
-        // win32metadata: { ... }
-      },
-
-      builder: {
-        // https://www.electron.build/configuration/configuration
-
-        appId: 'devflow-erp-fe-v1',
-      },
-    },
-
-    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-browser-extensions/configuring-bex
-    bex: {
-      // extendBexScriptsConf (esbuildConf) {},
-      // extendBexManifestJson (json) {},
-
-      /**
-       * The list of extra scripts (js/ts) not in your bex manifest that you want to
-       * compile and use in your browser extension. Maybe dynamic use them?
-       *
-       * Each entry in the list should be a relative filename to /src-bex/
-       *
-       * @example [ 'my-script.ts', 'sub-folder/my-other-script.js' ]
-       */
-      extraScripts: [],
-    },
-  };
-});
-</file>
-
-<file path="README.md">
-# DevFlow ERP (devflow-erp-fe-v1)
-
-devflow erp frontend server
-
-## Install the dependencies
-
-```bash
-yarn
-# or
-npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-
-```bash
-quasar dev
-```
-
-### Lint the files
-
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-### Format the files
-
-```bash
-yarn format
-# or
-npm run format
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
-</file>
 
 <file path="src/api/auth.api.ts">
 // ============================================
@@ -2156,25 +1557,6 @@ export async function getUserProfile(): Promise<UserProfile> {
   const response = await apiClient.get<UserProfile>('/users/me/profile');
   return response.data;
 }
-</file>
-
-<file path="src/App.vue">
-<template>
-  <router-view />
-</template>
-
-<script setup lang="ts">
-import { useQuasar } from 'quasar';
-
-// 1. Quasar 앱 이름 설정 (기존에 있었을 가능성이 높음)
-defineOptions({
-  name: 'App',
-});
-
-// 2. 다크모드 강제 해제 (추가한 내용)
-const $q = useQuasar();
-$q.dark.set(false);
-</script>
 </file>
 
 <file path="src/assets/quasar-logo-vertical.svg">
@@ -5503,76 +4885,6 @@ function handleRollback() {
 </script>
 </file>
 
-<file path="src/components/EssentialLink.vue">
-<template>
-  <q-item clickable tag="a" target="_blank" :href="link">
-    <q-item-section v-if="icon" avatar>
-      <q-icon :name="icon" />
-    </q-item-section>
-
-    <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
-    </q-item-section>
-  </q-item>
-</template>
-
-<script setup lang="ts">
-export interface EssentialLinkProps {
-  title: string;
-  caption?: string;
-  link?: string;
-  icon?: string;
-}
-
-withDefaults(defineProps<EssentialLinkProps>(), {
-  caption: '',
-  link: '#',
-  icon: '',
-});
-</script>
-</file>
-
-<file path="src/components/ExampleComponent.vue">
-<template>
-  <div>
-    <p>{{ title }}</p>
-    <ul>
-      <li v-for="todo in todos" :key="todo.id" @click="increment">
-        {{ todo.id }} - {{ todo.content }}
-      </li>
-    </ul>
-    <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
-    <p>Active: {{ active ? 'yes' : 'no' }}</p>
-    <p>Clicks on todos: {{ clickCount }}</p>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { computed, ref } from 'vue';
-import type { Todo, Meta } from './models';
-
-interface Props {
-  title: string;
-  todos?: Todo[];
-  meta: Meta;
-  active: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  todos: () => [],
-});
-
-const clickCount = ref(0);
-function increment() {
-  clickCount.value += 1;
-  return clickCount.value;
-}
-
-const todoCount = computed(() => props.todos.length);
-</script>
-</file>
-
 <file path="src/components/issue/IssueCard.vue">
 <template>
   <q-card class="issue-card" @click="handleClick">
@@ -5989,17 +5301,6 @@ function handleCancel() {
   emit('cancel');
 }
 </script>
-</file>
-
-<file path="src/components/models.ts">
-export interface Todo {
-  id: number;
-  content: string;
-}
-
-export interface Meta {
-  totalCount: number;
-}
 </file>
 
 <file path="src/components/project/ProjectCard.vue">
@@ -8822,6 +8123,87 @@ onMounted(() => {
 </script>
 </file>
 
+<file path="src/components/EssentialLink.vue">
+<template>
+  <q-item clickable tag="a" target="_blank" :href="link">
+    <q-item-section v-if="icon" avatar>
+      <q-icon :name="icon" />
+    </q-item-section>
+
+    <q-item-section>
+      <q-item-label>{{ title }}</q-item-label>
+      <q-item-label caption>{{ caption }}</q-item-label>
+    </q-item-section>
+  </q-item>
+</template>
+
+<script setup lang="ts">
+export interface EssentialLinkProps {
+  title: string;
+  caption?: string;
+  link?: string;
+  icon?: string;
+}
+
+withDefaults(defineProps<EssentialLinkProps>(), {
+  caption: '',
+  link: '#',
+  icon: '',
+});
+</script>
+</file>
+
+<file path="src/components/ExampleComponent.vue">
+<template>
+  <div>
+    <p>{{ title }}</p>
+    <ul>
+      <li v-for="todo in todos" :key="todo.id" @click="increment">
+        {{ todo.id }} - {{ todo.content }}
+      </li>
+    </ul>
+    <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
+    <p>Active: {{ active ? 'yes' : 'no' }}</p>
+    <p>Clicks on todos: {{ clickCount }}</p>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+import type { Todo, Meta } from './models';
+
+interface Props {
+  title: string;
+  todos?: Todo[];
+  meta: Meta;
+  active: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  todos: () => [],
+});
+
+const clickCount = ref(0);
+function increment() {
+  clickCount.value += 1;
+  return clickCount.value;
+}
+
+const todoCount = computed(() => props.todos.length);
+</script>
+</file>
+
+<file path="src/components/models.ts">
+export interface Todo {
+  id: number;
+  content: string;
+}
+
+export interface Meta {
+  totalCount: number;
+}
+</file>
+
 <file path="src/composables/useAuth.ts">
 // ============================================
 // useAuth Composable - Authentication logic wrapper
@@ -9601,16 +8983,6 @@ $info: #31ccec;
 $warning: #f2c037;
 </file>
 
-<file path="src/env.d.ts">
-declare namespace NodeJS {
-  interface ProcessEnv {
-    NODE_ENV: string;
-    VUE_ROUTER_MODE: 'hash' | 'history' | 'abstract' | undefined;
-    VUE_ROUTER_BASE: string | undefined;
-  }
-}
-</file>
-
 <file path="src/layouts/AuthLayout.vue">
 <template>
   <q-layout view="hHh lpR fFf" class="auth-layout">
@@ -9710,7 +9082,7 @@ const currentYear = computed(() => new Date().getFullYear());
         </q-btn>
 
         <!-- Dark Mode Toggle -->
-        <!-- <q-btn
+        <q-btn
           flat
           dense
           round
@@ -9719,7 +9091,7 @@ const currentYear = computed(() => new Date().getFullYear());
           class="q-mr-sm"
         >
           <q-tooltip>{{ $q.dark.isActive ? '라이트 모드' : '다크 모드' }}</q-tooltip>
-        </q-btn> -->
+        </q-btn>
 
         <!-- Notifications (Placeholder) -->
         <q-btn flat dense round icon="notifications" class="q-mr-sm">
@@ -9948,7 +9320,7 @@ const currentYear = computed(() => new Date().getFullYear());
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-// import { useQuasar } from 'quasar';
+import { useQuasar } from 'quasar'; // import 확인
 import { useAuth } from 'src/composables/useAuth';
 import PageBreadcrumbs from 'src/components/common/PageBreadcrumbs.vue';
 import GlobalSearch from 'src/components/common/GlobalSearch.vue';
@@ -9958,7 +9330,7 @@ import GlobalSearch from 'src/components/common/GlobalSearch.vue';
 // ============================================
 
 const route = useRoute();
-// const $q = useQuasar();
+const $q = useQuasar(); // 주석 완전히 해제됨!
 const { user, userFullName, userInitials, logout } = useAuth();
 
 // ============================================
@@ -9976,11 +9348,11 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
-// function toggleDarkMode() {
-//   $q.dark.toggle();
-//   // Save preference to localStorage
-//   localStorage.setItem('darkMode', String($q.dark.isActive));
-// }
+function toggleDarkMode() {
+  $q.dark.toggle();
+  // Save preference to localStorage
+  localStorage.setItem('darkMode', String($q.dark.isActive));
+}
 
 function isActiveRoute(path: string): boolean {
   return route.path.startsWith(path);
@@ -9998,43 +9370,16 @@ async function handleLogout() {
 // Initialize dark mode from localStorage
 // ============================================
 
-// const savedDarkMode = localStorage.getItem('darkMode');
-// if (savedDarkMode === 'true') {
-//   $q.dark.set(true);
-// } else if (savedDarkMode === 'false') {
-//   $q.dark.set(false);
-// } else {
-//   // Auto detect based on system preference
-//   $q.dark.set('auto');
-// }
+const savedDarkMode = localStorage.getItem('darkMode');
+if (savedDarkMode === 'true') {
+  $q.dark.set(true);
+} else if (savedDarkMode === 'false') {
+  $q.dark.set(false);
+} else {
+  // 기본값을 라이트 모드로 설정 (따옴표 없는 false)
+  $q.dark.set(false);
+}
 </script>
-
-<style scoped lang="scss">
-.q-toolbar {
-  min-height: 64px;
-}
-
-.q-drawer {
-  .q-item {
-    border-radius: 8px;
-    margin: 4px 8px;
-
-    &.q-router-link--active {
-      font-weight: 600;
-    }
-  }
-
-  .q-expansion-item {
-    .q-item {
-      margin-left: 0;
-    }
-  }
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-</style>
 </file>
 
 <file path="src/pages/auth/CallbackPage.vue">
@@ -11023,208 +10368,6 @@ function formatEnvironment(env: string): string {
 </script>
 </file>
 
-<file path="src/pages/ErrorNotFound.vue">
-<template>
-  <q-page class="flex flex-center bg-grey-1">
-    <div class="column items-center q-gutter-lg" style="max-width: 600px">
-      <!-- Error Icon -->
-      <q-icon name="search_off" size="120px" color="warning" />
-
-      <!-- Error Code -->
-      <div class="text-h2 text-weight-bold text-warning">404</div>
-
-      <!-- Error Title -->
-      <div class="text-h5 text-weight-medium text-center">
-        페이지를 찾을 수 없습니다
-      </div>
-
-      <!-- Error Description -->
-      <div class="text-body1 text-grey-7 text-center">
-        요청하신 페이지가 존재하지 않거나,<br />
-        이동되었거나 삭제되었을 수 있습니다.
-      </div>
-
-      <!-- Actions -->
-      <div class="row q-gutter-md">
-        <q-btn
-          color="primary"
-          label="홈으로 돌아가기"
-          icon="home"
-          @click="handleGoHome"
-          unelevated
-        />
-        <q-btn
-          color="grey-7"
-          label="이전 페이지"
-          icon="arrow_back"
-          @click="handleGoBack"
-          outline
-        />
-      </div>
-
-      <!-- Additional Info -->
-      <q-card flat bordered class="full-width q-pa-md bg-grey-2">
-        <div class="text-caption text-grey-7">
-          URL을 확인하시거나 홈페이지로 돌아가주세요.
-        </div>
-      </q-card>
-    </div>
-  </q-page>
-</template>
-
-<script setup lang="ts">
-import { useRouter } from 'vue-router';
-
-// ============================================
-// Composables
-// ============================================
-
-const router = useRouter();
-
-// ============================================
-// Methods
-// ============================================
-
-function handleGoHome() {
-  void router.push('/dashboard');
-}
-
-function handleGoBack() {
-  router.back();
-}
-</script>
-
-<style scoped lang="scss">
-.q-page {
-  min-height: 100vh;
-}
-</style>
-</file>
-
-<file path="src/pages/ErrorServerError.vue">
-<template>
-  <q-page class="flex flex-center bg-grey-1">
-    <div class="column items-center q-gutter-lg" style="max-width: 600px">
-      <!-- Error Icon -->
-      <q-icon name="error" size="120px" color="negative" />
-
-      <!-- Error Code -->
-      <div class="text-h2 text-weight-bold text-negative">500</div>
-
-      <!-- Error Title -->
-      <div class="text-h5 text-weight-medium text-center">
-        서버 오류가 발생했습니다
-      </div>
-
-      <!-- Error Description -->
-      <div class="text-body1 text-grey-7 text-center">
-        죄송합니다. 서버에 문제가 발생했습니다.<br />
-        잠시 후 다시 시도해주세요.
-      </div>
-
-      <!-- Actions -->
-      <div class="row q-gutter-md">
-        <q-btn
-          color="primary"
-          label="새로고침"
-          icon="refresh"
-          @click="handleRefresh"
-          unelevated
-        />
-        <q-btn
-          color="grey-7"
-          label="홈으로 돌아가기"
-          icon="home"
-          @click="handleGoHome"
-          outline
-        />
-      </div>
-
-      <!-- Additional Info -->
-      <q-card flat bordered class="full-width q-pa-md bg-grey-2">
-        <div class="text-caption text-grey-7">
-          문제가 계속되면 시스템 관리자에게 문의해주세요.
-        </div>
-      </q-card>
-    </div>
-  </q-page>
-</template>
-
-<script setup lang="ts">
-import { useRouter } from 'vue-router';
-
-// ============================================
-// Composables
-// ============================================
-
-const router = useRouter();
-
-// ============================================
-// Methods
-// ============================================
-
-function handleRefresh() {
-  window.location.reload();
-}
-
-function handleGoHome() {
-  void router.push('/dashboard');
-}
-</script>
-
-<style scoped lang="scss">
-.q-page {
-  min-height: 100vh;
-}
-</style>
-</file>
-
-<file path="src/pages/IndexPage.vue">
-<template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
-  </q-page>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import type { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
-
-const todos = ref<Todo[]>([
-  {
-    id: 1,
-    content: 'ct1',
-  },
-  {
-    id: 2,
-    content: 'ct2',
-  },
-  {
-    id: 3,
-    content: 'ct3',
-  },
-  {
-    id: 4,
-    content: 'ct4',
-  },
-  {
-    id: 5,
-    content: 'ct5',
-  },
-]);
-
-const meta = ref<Meta>({
-  totalCount: 1200,
-});
-</script>
-</file>
-
 <file path="src/pages/issues/IssueDetailPage.vue">
 <template>
   <q-page class="issue-detail-page q-pa-md">
@@ -11236,7 +10379,7 @@ const meta = ref<Meta>({
       </div>
       <q-space />
       <q-btn v-if="issue" flat icon="edit" label="수정" color="primary" @click="handleEdit" />
-      <q-btn v-if="issue" flat icon="delete" label="삭제" color="negative" @click="handleDelete" />
+      <q-btn v-if="issue" flat icon="delete" label="delete" color="negative" @click="handleDelete" />
     </div>
 
     <div v-if="loading" class="row justify-center q-py-xl">
@@ -11956,121 +11099,6 @@ onMounted(() => {
 </style>
 </file>
 
-<file path="src/pages/KanbanPage.vue">
-<template>
-  <q-page class="q-pa-md">
-    <div class="text-h4 text-weight-bold">kanban board</div>
-
-    <div v-if="issueStore.isLoading" class="flex flex-center" style="height: 50vh">
-      <q-spinner-dots color="primary" size="50px" />
-    </div>
-
-    <div v-else class="kanban-board-container">
-      <div v-for="status in statuses" :key="status.value" class="kanban-column">
-        <q-card flat bordered>
-          <q-card-section class="bg-grey-2">
-            <div class="text-subtitle1 text-weight-bold">{{ status.label }}</div>
-          </q-card-section>
-
-          <q-separator />
-
-          <q-card-section class="q-pa-sm kanban-list">
-            <draggable
-              :list="issueStore.issuesByStatus[status.value]"
-              group="issues"
-              item-key="id"
-              class="draggable-area"
-              tag="div"
-              @change="(event: DraggableChangeEvent) => handleMove(event, status.value)"
-            >
-              <template #item="{ element: issue }">
-                <issue-card :issue="issue" class="q-mb-sm cursor-grab" />
-              </template>
-            </draggable>
-
-            <div
-              v-if="!issueStore.issuesByStatus[status.value]?.length"
-              class="text-center text-grey q-pa-md"
-            >
-              카드가 없습니다
-            </div>
-          </q-card-section>
-        </q-card>
-      </div>
-    </div>
-  </q-page>
-</template>
-
-<script setup lang="ts">
-import { onMounted } from 'vue';
-import { useIssueStore } from 'src/stores/issue.store';
-import { ISSUE_STATUS_OPTIONS } from 'src/utils/constants';
-import IssueCard from 'src/components/issue/IssueCard.vue';
-// 1단계에서 설치한 'vuedraggable'과 필요한 타입들을 가져옵니다.
-import draggable from 'vuedraggable';
-import type { Issue, IssueStatus } from 'src/types/models.types';
-
-// vuedraggable 이벤트의 타입을 명확하게 정의합니다. (TypeScript 오류 방지)
-interface DraggableChangeEvent {
-  added?: { element: Issue; newIndex: number };
-  removed?: { element: Issue; oldIndex: number };
-  moved?: { element: Issue; newIndex: number; oldIndex: number };
-}
-
-// Pinia 저장소를 가져옵니다.
-const issueStore = useIssueStore();
-// '할 일' 등 상태 목록을 가져옵니다.
-const statuses = ISSUE_STATUS_OPTIONS;
-
-// 페이지가 처음 열릴 때, 모든 이슈 데이터를 가져옵니다.
-onMounted(() => {
-  // void를 붙여 ESLint 오류(no-floating-promises)를 해결합니다.
-  void issueStore.fetchIssues({ size: 1000 });
-});
-
-// 카드를 드래그해서 다른 열에 놓았을 때 실행될 함수
-const handleMove = async (event: DraggableChangeEvent, newStatus: IssueStatus) => {
-  // `event.added`는 카드가 새로운 열로 '추가'되었을 때만 존재합니다.
-  if (event.added) {
-    const movedIssue: Issue = event.added.element;
-    console.log(`'${movedIssue.title}' 카드가 '${newStatus}' 상태로 이동됨`);
-
-    // Pinia 스토어를 통해 백엔드에 상태 변경을 요청합니다.
-    try {
-      await issueStore.updateStatus(movedIssue.id, newStatus);
-    } catch (error) {
-      console.error('상태 변경 실패:', error);
-      // 만약 실패하면, 화면을 원래대로 되돌리기 위해 데이터를 다시 불러옵니다.
-      void issueStore.fetchIssues({ size: 1000 });
-    }
-  }
-};
-</script>
-
-<style lang="scss" scoped>
-.kanban-board-container {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto; /* 열이 많아지면 가로 스크롤 */
-  padding-bottom: 16px;
-}
-.kanban-column {
-  width: 300px;
-  flex-shrink: 0; /* 열 너비 고정 */
-}
-.kanban-list {
-  min-height: 200px;
-  background-color: #f9f9f9;
-}
-.draggable-area {
-  min-height: 200px; /* 드래그 영역이 비어있어도 최소 높이 유지 */
-}
-.cursor-grab {
-  cursor: grab; /* 드래그할 수 있음을 알려주는 손 모양 커서 */
-}
-</style>
-</file>
-
 <file path="src/pages/profile/ProfilePage.vue">
 <template>
   <q-page padding>
@@ -12475,7 +11503,7 @@ onMounted(() => {
 
         <q-card-actions align="right">
           <q-btn flat label="Cancel" color="grey" v-close-popup />
-          <q-btn flat label="Delete" color="negative" @click="confirmDelete" />
+          <q-btn flat label="삭제" color="negative" @click="confirmDelete" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -13801,7 +12829,7 @@ async function handleSubmit(data: ServiceCreate | ServiceUpdate) {
       </div>
       <q-space />
       <q-btn v-if="sprint" flat icon="edit" label="수정" color="primary" @click="handleEdit" />
-      <q-btn v-if="sprint" flat icon="delete" label="삭제" color="negative" @click="handleDelete" />
+      <q-btn v-if="sprint" flat icon="delete" label="delete" color="negative" @click="handleDelete" />
     </div>
 
     <div v-if="isLoading" class="row justify-center q-py-xl">
@@ -15216,6 +14244,323 @@ onMounted(() => {
   void loadUsers(); // [Fix] void operator
 });
 </script>
+</file>
+
+<file path="src/pages/ErrorNotFound.vue">
+<template>
+  <q-page class="flex flex-center bg-grey-1">
+    <div class="column items-center q-gutter-lg" style="max-width: 600px">
+      <!-- Error Icon -->
+      <q-icon name="search_off" size="120px" color="warning" />
+
+      <!-- Error Code -->
+      <div class="text-h2 text-weight-bold text-warning">404</div>
+
+      <!-- Error Title -->
+      <div class="text-h5 text-weight-medium text-center">
+        페이지를 찾을 수 없습니다
+      </div>
+
+      <!-- Error Description -->
+      <div class="text-body1 text-grey-7 text-center">
+        요청하신 페이지가 존재하지 않거나,<br />
+        이동되었거나 삭제되었을 수 있습니다.
+      </div>
+
+      <!-- Actions -->
+      <div class="row q-gutter-md">
+        <q-btn
+          color="primary"
+          label="홈으로 돌아가기"
+          icon="home"
+          @click="handleGoHome"
+          unelevated
+        />
+        <q-btn
+          color="grey-7"
+          label="이전 페이지"
+          icon="arrow_back"
+          @click="handleGoBack"
+          outline
+        />
+      </div>
+
+      <!-- Additional Info -->
+      <q-card flat bordered class="full-width q-pa-md bg-grey-2">
+        <div class="text-caption text-grey-7">
+          URL을 확인하시거나 홈페이지로 돌아가주세요.
+        </div>
+      </q-card>
+    </div>
+  </q-page>
+</template>
+
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+// ============================================
+// Composables
+// ============================================
+
+const router = useRouter();
+
+// ============================================
+// Methods
+// ============================================
+
+function handleGoHome() {
+  void router.push('/dashboard');
+}
+
+function handleGoBack() {
+  router.back();
+}
+</script>
+
+<style scoped lang="scss">
+.q-page {
+  min-height: 100vh;
+}
+</style>
+</file>
+
+<file path="src/pages/ErrorServerError.vue">
+<template>
+  <q-page class="flex flex-center bg-grey-1">
+    <div class="column items-center q-gutter-lg" style="max-width: 600px">
+      <!-- Error Icon -->
+      <q-icon name="error" size="120px" color="negative" />
+
+      <!-- Error Code -->
+      <div class="text-h2 text-weight-bold text-negative">500</div>
+
+      <!-- Error Title -->
+      <div class="text-h5 text-weight-medium text-center">
+        서버 오류가 발생했습니다
+      </div>
+
+      <!-- Error Description -->
+      <div class="text-body1 text-grey-7 text-center">
+        죄송합니다. 서버에 문제가 발생했습니다.<br />
+        잠시 후 다시 시도해주세요.
+      </div>
+
+      <!-- Actions -->
+      <div class="row q-gutter-md">
+        <q-btn
+          color="primary"
+          label="새로고침"
+          icon="refresh"
+          @click="handleRefresh"
+          unelevated
+        />
+        <q-btn
+          color="grey-7"
+          label="홈으로 돌아가기"
+          icon="home"
+          @click="handleGoHome"
+          outline
+        />
+      </div>
+
+      <!-- Additional Info -->
+      <q-card flat bordered class="full-width q-pa-md bg-grey-2">
+        <div class="text-caption text-grey-7">
+          문제가 계속되면 시스템 관리자에게 문의해주세요.
+        </div>
+      </q-card>
+    </div>
+  </q-page>
+</template>
+
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+// ============================================
+// Composables
+// ============================================
+
+const router = useRouter();
+
+// ============================================
+// Methods
+// ============================================
+
+function handleRefresh() {
+  window.location.reload();
+}
+
+function handleGoHome() {
+  void router.push('/dashboard');
+}
+</script>
+
+<style scoped lang="scss">
+.q-page {
+  min-height: 100vh;
+}
+</style>
+</file>
+
+<file path="src/pages/IndexPage.vue">
+<template>
+  <q-page class="row items-center justify-evenly">
+    <example-component
+      title="Example component"
+      active
+      :todos="todos"
+      :meta="meta"
+    ></example-component>
+  </q-page>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import type { Todo, Meta } from 'components/models';
+import ExampleComponent from 'components/ExampleComponent.vue';
+
+const todos = ref<Todo[]>([
+  {
+    id: 1,
+    content: 'ct1',
+  },
+  {
+    id: 2,
+    content: 'ct2',
+  },
+  {
+    id: 3,
+    content: 'ct3',
+  },
+  {
+    id: 4,
+    content: 'ct4',
+  },
+  {
+    id: 5,
+    content: 'ct5',
+  },
+]);
+
+const meta = ref<Meta>({
+  totalCount: 1200,
+});
+</script>
+</file>
+
+<file path="src/pages/KanbanPage.vue">
+<template>
+  <q-page class="q-pa-md">
+    <div class="text-h4 text-weight-bold">kanban board</div>
+
+    <div v-if="issueStore.isLoading" class="flex flex-center" style="height: 50vh">
+      <q-spinner-dots color="primary" size="50px" />
+    </div>
+
+    <div v-else class="kanban-board-container">
+      <div v-for="status in statuses" :key="status.value" class="kanban-column">
+        <q-card flat bordered>
+          <q-card-section class="bg-grey-2">
+            <div class="text-subtitle1 text-weight-bold">{{ status.label }}</div>
+          </q-card-section>
+
+          <q-separator />
+
+          <q-card-section class="q-pa-sm kanban-list">
+            <draggable
+              :list="issueStore.issuesByStatus[status.value]"
+              group="issues"
+              item-key="id"
+              class="draggable-area"
+              tag="div"
+              @change="(event: DraggableChangeEvent) => handleMove(event, status.value)"
+            >
+              <template #item="{ element: issue }">
+                <issue-card :issue="issue" class="q-mb-sm cursor-grab" />
+              </template>
+            </draggable>
+
+            <div
+              v-if="!issueStore.issuesByStatus[status.value]?.length"
+              class="text-center text-grey q-pa-md"
+            >
+              카드가 없습니다
+            </div>
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
+  </q-page>
+</template>
+
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { useIssueStore } from 'src/stores/issue.store';
+import { ISSUE_STATUS_OPTIONS } from 'src/utils/constants';
+import IssueCard from 'src/components/issue/IssueCard.vue';
+// 1단계에서 설치한 'vuedraggable'과 필요한 타입들을 가져옵니다.
+import draggable from 'vuedraggable';
+import type { Issue, IssueStatus } from 'src/types/models.types';
+
+// vuedraggable 이벤트의 타입을 명확하게 정의합니다. (TypeScript 오류 방지)
+interface DraggableChangeEvent {
+  added?: { element: Issue; newIndex: number };
+  removed?: { element: Issue; oldIndex: number };
+  moved?: { element: Issue; newIndex: number; oldIndex: number };
+}
+
+// Pinia 저장소를 가져옵니다.
+const issueStore = useIssueStore();
+// '할 일' 등 상태 목록을 가져옵니다.
+const statuses = ISSUE_STATUS_OPTIONS;
+
+// 페이지가 처음 열릴 때, 모든 이슈 데이터를 가져옵니다.
+onMounted(() => {
+  // void를 붙여 ESLint 오류(no-floating-promises)를 해결합니다.
+  void issueStore.fetchIssues({ size: 1000 });
+});
+
+// 카드를 드래그해서 다른 열에 놓았을 때 실행될 함수
+const handleMove = async (event: DraggableChangeEvent, newStatus: IssueStatus) => {
+  // `event.added`는 카드가 새로운 열로 '추가'되었을 때만 존재합니다.
+  if (event.added) {
+    const movedIssue: Issue = event.added.element;
+    console.log(`'${movedIssue.title}' 카드가 '${newStatus}' 상태로 이동됨`);
+
+    // Pinia 스토어를 통해 백엔드에 상태 변경을 요청합니다.
+    try {
+      await issueStore.updateStatus(movedIssue.id, newStatus);
+    } catch (error) {
+      console.error('상태 변경 실패:', error);
+      // 만약 실패하면, 화면을 원래대로 되돌리기 위해 데이터를 다시 불러옵니다.
+      void issueStore.fetchIssues({ size: 1000 });
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.kanban-board-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto; /* 열이 많아지면 가로 스크롤 */
+  padding-bottom: 16px;
+}
+.kanban-column {
+  width: 300px;
+  flex-shrink: 0; /* 열 너비 고정 */
+}
+.kanban-list {
+  min-height: 200px;
+  background-color: #f9f9f9;
+}
+.draggable-area {
+  min-height: 200px; /* 드래그 영역이 비어있어도 최소 높이 유지 */
+}
+.cursor-grab {
+  cursor: grab; /* 드래그할 수 있음을 알려주는 손 모양 커서 */
+}
+</style>
 </file>
 
 <file path="src/router/guards.ts">
@@ -21109,6 +20454,667 @@ export function combine(...validators: ((val: unknown) => true | string)[]) {
     return true;
   };
 }
+</file>
+
+<file path="src/App.vue">
+<template>
+  <router-view />
+</template>
+
+<script setup lang="ts">
+
+// 1. Quasar 앱 이름 설정 (기존에 있었을 가능성이 높음)
+defineOptions({
+  name: 'App',
+});
+
+</script>
+</file>
+
+<file path="src/env.d.ts">
+declare namespace NodeJS {
+  interface ProcessEnv {
+    NODE_ENV: string;
+    VUE_ROUTER_MODE: 'hash' | 'history' | 'abstract' | undefined;
+    VUE_ROUTER_BASE: string | undefined;
+  }
+}
+</file>
+
+<file path=".editorconfig">
+[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
+charset = utf-8
+indent_size = 2
+indent_style = space
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+</file>
+
+<file path=".env.development">
+# DevFlow ERP - Development Environment Variables
+
+# Backend API URL
+VITE_API_URL=http://127.0.0.1:8000/api/v1
+# Authentik SSO URL
+VITE_AUTH_URL=http://localhost:9000
+
+# Application Settings
+VITE_APP_TITLE=DevFlow ERP
+
+# Pagination
+VITE_ITEMS_PER_PAGE=20
+
+# API Request Timeout (ms)
+VITE_API_TIMEOUT=30000
+</file>
+
+<file path=".env.production">
+# DevFlow ERP - Production Environment Variables
+
+# Backend API URL
+VITE_API_URL=https://api.devflow.com
+
+# Authentik SSO URL
+VITE_AUTH_URL=https://auth.devflow.com
+
+# Application Settings
+VITE_APP_TITLE=DevFlow ERP
+
+# Pagination
+VITE_ITEMS_PER_PAGE=20
+
+# API Request Timeout (ms)
+VITE_API_TIMEOUT=30000
+</file>
+
+<file path=".gitignore">
+.DS_Store
+.thumbs.db
+node_modules
+
+# Quasar core related directories
+.quasar
+/dist
+/quasar.config.*.temporary.compiled*
+
+# Cordova related directories and files
+/src-cordova/node_modules
+/src-cordova/platforms
+/src-cordova/plugins
+/src-cordova/www
+
+# Capacitor related directories and files
+/src-capacitor/www
+/src-capacitor/node_modules
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# local .env files
+.env.local*
+</file>
+
+<file path=".npmrc">
+# pnpm-related options
+shamefully-hoist=true
+strict-peer-dependencies=false
+# to get the latest compatible packages when creating the project https://github.com/pnpm/pnpm/issues/6463
+resolution-mode=highest
+</file>
+
+<file path=".prettierrc.json">
+{
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "singleQuote": true,
+  "printWidth": 100
+}
+</file>
+
+<file path="Dockerfile">
+# ============================================
+# Stage 1: Build Stage
+# ============================================
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy application files
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# ============================================
+# Stage 2: Production Stage
+# ============================================
+FROM nginx:alpine
+
+# Copy built files from build stage
+COPY --from=build /app/dist/spa /usr/share/nginx/html
+
+# Copy custom nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port
+EXPOSE 80
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost/ || exit 1
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
+</file>
+
+<file path="Dockerfile.dev">
+# ============================================
+# Development Dockerfile with Hot Reload
+# ============================================
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy all files first (needed for quasar prepare)
+COPY . .
+
+# Copy Docker environment file
+COPY .env.development .env
+
+# Install dependencies (this will run quasar prepare as postinstall)
+RUN npm ci
+
+# Expose Quasar dev server port
+EXPOSE 9000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:9000/ || exit 1
+
+# Start development server
+CMD ["npm", "run", "dev"]
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js';
+import globals from 'globals';
+import pluginVue from 'eslint-plugin-vue';
+import pluginQuasar from '@quasar/app-vite/eslint';
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
+import prettierSkipFormatting from '@vue/eslint-config-prettier/skip-formatting';
+
+export default defineConfigWithVueTs(
+  {
+    /**
+     * Ignore the following files.
+     * Please note that pluginQuasar.configs.recommended() already ignores
+     * the "node_modules" folder for you (and all other Quasar project
+     * relevant folders and files).
+     *
+     * ESLint requires "ignores" key to be the only one in this object
+     */
+    // ignores: []
+  },
+
+  pluginQuasar.configs.recommended(),
+  js.configs.recommended,
+
+  /**
+   * https://eslint.vuejs.org
+   *
+   * pluginVue.configs.base
+   *   -> Settings and rules to enable correct ESLint parsing.
+   * pluginVue.configs[ 'flat/essential']
+   *   -> base, plus rules to prevent errors or unintended behavior.
+   * pluginVue.configs["flat/strongly-recommended"]
+   *   -> Above, plus rules to considerably improve code readability and/or dev experience.
+   * pluginVue.configs["flat/recommended"]
+   *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
+   */
+  pluginVue.configs['flat/essential'],
+
+  {
+    files: ['**/*.ts', '**/*.vue'],
+    rules: {
+      '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+    },
+  },
+  // https://github.com/vuejs/eslint-config-typescript
+  vueTsConfigs.recommendedTypeChecked,
+
+  {
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+
+      globals: {
+        ...globals.browser,
+        ...globals.node, // SSR, Electron, config files
+        process: 'readonly', // process.env.*
+        ga: 'readonly', // Google Analytics
+        cordova: 'readonly',
+        Capacitor: 'readonly',
+        chrome: 'readonly', // BEX related
+        browser: 'readonly', // BEX related
+      },
+    },
+
+    // add your custom rules here
+    rules: {
+      'prefer-promise-reject-errors': 'off',
+
+      // allow debugger during development only
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    },
+  },
+
+  {
+    files: ['src-pwa/custom-service-worker.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.serviceworker,
+      },
+    },
+  },
+
+  prettierSkipFormatting,
+);
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html>
+  <head>
+    <title><%= productName %></title>
+
+    <meta charset="utf-8" />
+    <meta name="description" content="<%= productDescription %>" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
+    />
+
+    <link rel="icon" type="image/png" sizes="128x128" href="icons/favicon-128x128.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png" />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+  </head>
+  <body>
+    <!-- quasar:entry-point -->
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "devflow-erp-fe-v1",
+  "version": "0.0.1",
+  "description": "devflow erp frontend server",
+  "productName": "DevFlow ERP",
+  "author": "[SeongHyeonJeon]nukunga <nukunga123@gmail.com>",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
+    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "postinstall": "quasar prepare"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.4",
+    "axios": "^1.12.2",
+    "chart.js": "^4.5.1",
+    "date-fns": "^4.1.0",
+    "pinia": "^3.0.3",
+    "quasar": "^2.16.0",
+    "vue": "^3.5.22",
+    "vue-chartjs": "^5.3.2",
+    "vue-router": "^4.0.12",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@quasar/app-vite": "^2.1.0",
+    "@types/node": "^20.5.9",
+    "@vue/eslint-config-prettier": "^10.1.0",
+    "@vue/eslint-config-typescript": "^14.4.0",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^9.14.0",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.9.2",
+    "vite-plugin-checker": "^0.11.0",
+    "vue-eslint-parser": "^10.2.0",
+    "vue-tsc": "^3.0.7"
+  },
+  "engines": {
+    "node": "^28 || ^26 || ^24 || ^22 || ^20",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
+</file>
+
+<file path="postcss.config.js">
+// https://github.com/michael-ciniawsky/postcss-load-config
+
+import autoprefixer from 'autoprefixer';
+// import rtlcss from 'postcss-rtlcss'
+
+export default {
+  plugins: [
+    // https://github.com/postcss/autoprefixer
+    autoprefixer({
+      overrideBrowserslist: [
+        'last 4 Chrome versions',
+        'last 4 Firefox versions',
+        'last 4 Edge versions',
+        'last 4 Safari versions',
+        'last 4 Android versions',
+        'last 4 ChromeAndroid versions',
+        'last 4 FirefoxAndroid versions',
+        'last 4 iOS versions',
+      ],
+    }),
+
+    // https://github.com/elchininet/postcss-rtlcss
+    // If you want to support RTL css, then
+    // 1. yarn/pnpm/bun/npm install postcss-rtlcss
+    // 2. optionally set quasar.config.js > framework > lang to an RTL language
+    // 3. uncomment the following line (and its import statement above):
+    // rtlcss()
+  ],
+};
+</file>
+
+<file path="quasar.config.ts">
+// Configuration for your app
+// https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
+
+import { defineConfig } from '#q-app/wrappers';
+
+export default defineConfig((/* ctx */) => {
+  return {
+    // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
+    // preFetch: true,
+
+    // app boot file (/src/boot)
+    // --> boot files are part of "main.js"
+    // https://v2.quasar.dev/quasar-cli-vite/boot-files
+    boot: ['pinia'],
+
+    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
+    css: ['app.scss'],
+
+    // https://github.com/quasarframework/quasar/tree/dev/extras
+    extras: [
+      // 'ionicons-v4',
+      // 'mdi-v7',
+      // 'fontawesome-v6',
+      // 'eva-icons',
+      // 'themify',
+      // 'line-awesome',
+      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+
+      'roboto-font', // optional, you are not bound to it
+      'material-icons', // optional, you are not bound to it
+    ],
+
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
+    build: {
+      target: {
+        browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
+        node: 'node20',
+      },
+
+      typescript: {
+        strict: true,
+        vueShim: true,
+        // extendTsConfig (tsConfig) {}
+      },
+
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      // vueRouterBase,
+      // vueDevtools,
+      // vueOptionsAPI: false,
+
+      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
+
+      // publicPath: '/',
+      // analyze: true,
+      // env: {},
+      // rawDefine: {}
+      // ignorePublicFolder: true,
+      // minify: false,
+      // polyfillModulePreload: true,
+      // distDir
+
+      // extendViteConf (viteConf) {},
+      // viteVuePluginOptions: {},
+
+      vitePlugins: [
+        [
+          'vite-plugin-checker',
+          {
+            vueTsc: true,
+            eslint: {
+              lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{ts,js,mjs,cjs,vue}"',
+              useFlatConfig: true,
+            },
+          },
+          { server: false },
+        ],
+      ],
+    },
+
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
+    devServer: {
+      // https: true,
+      port: 8080, // Set the development server port to 8080
+      open: true, // opens browser window automatically
+    },
+
+    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
+    framework: {
+      config: {
+        dark: false,
+      },
+
+      // iconSet: 'material-icons', // Quasar icon set
+      // lang: 'en-US', // Quasar language pack
+
+      // For special cases outside of where the auto-import strategy can have an impact
+      // (like functional components as one of the examples),
+      // you can manually specify Quasar components/directives to be available everywhere:
+      //
+      // components: [],
+      // directives: [],
+
+      // Quasar plugins
+      plugins: ['Notify', 'Dialog', 'Loading'],
+    },
+
+    // animations: 'all', // --- includes all animations
+    // https://v2.quasar.dev/options/animations
+    animations: [],
+
+    // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#sourcefiles
+    // sourceFiles: {
+    //   rootComponent: 'src/App.vue',
+    //   router: 'src/router/index',
+    //   store: 'src/store/index',
+    //   pwaRegisterServiceWorker: 'src-pwa/register-service-worker',
+    //   pwaServiceWorker: 'src-pwa/custom-service-worker',
+    //   pwaManifestFile: 'src-pwa/manifest.json',
+    //   electronMain: 'src-electron/electron-main',
+    //   electronPreload: 'src-electron/electron-preload'
+    //   bexManifestFile: 'src-bex/manifest.json
+    // },
+
+    // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
+    ssr: {
+      prodPort: 3000, // The default port that the production server should use
+      // (gets superseded if process.env.PORT is specified at runtime)
+
+      middlewares: [
+        'render', // keep this as last one
+      ],
+
+      // extendPackageJson (json) {},
+      // extendSSRWebserverConf (esbuildConf) {},
+
+      // manualStoreSerialization: true,
+      // manualStoreSsrContextInjection: true,
+      // manualStoreHydration: true,
+      // manualPostHydrationTrigger: true,
+
+      pwa: false,
+      // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
+
+      // pwaExtendGenerateSWOptions (cfg) {},
+      // pwaExtendInjectManifestOptions (cfg) {}
+    },
+
+    // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
+    pwa: {
+      workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
+      // swFilename: 'sw.js',
+      // manifestFilename: 'manifest.json',
+      // extendManifestJson (json) {},
+      // useCredentialsForManifestTag: true,
+      // injectPwaMetaTags: false,
+      // extendPWACustomSWConf (esbuildConf) {},
+      // extendGenerateSWOptions (cfg) {},
+      // extendInjectManifestOptions (cfg) {}
+    },
+
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
+    cordova: {
+      // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
+    },
+
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
+    capacitor: {
+      hideSplashscreen: true,
+    },
+
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/configuring-electron
+    electron: {
+      // extendElectronMainConf (esbuildConf) {},
+      // extendElectronPreloadConf (esbuildConf) {},
+
+      // extendPackageJson (json) {},
+
+      // Electron preload scripts (if any) from /src-electron, WITHOUT file extension
+      preloadScripts: ['electron-preload'],
+
+      // specify the debugging port to use for the Electron app when running in development mode
+      inspectPort: 5858,
+
+      bundler: 'packager', // 'packager' or 'builder'
+
+      packager: {
+        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
+        // OS X / Mac App Store
+        // appBundleId: '',
+        // appCategoryType: '',
+        // osxSign: '',
+        // protocol: 'myapp://path',
+        // Windows only
+        // win32metadata: { ... }
+      },
+
+      builder: {
+        // https://www.electron.build/configuration/configuration
+
+        appId: 'devflow-erp-fe-v1',
+      },
+    },
+
+    // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-browser-extensions/configuring-bex
+    bex: {
+      // extendBexScriptsConf (esbuildConf) {},
+      // extendBexManifestJson (json) {},
+
+      /**
+       * The list of extra scripts (js/ts) not in your bex manifest that you want to
+       * compile and use in your browser extension. Maybe dynamic use them?
+       *
+       * Each entry in the list should be a relative filename to /src-bex/
+       *
+       * @example [ 'my-script.ts', 'sub-folder/my-other-script.js' ]
+       */
+      extraScripts: [],
+    },
+  };
+});
+</file>
+
+<file path="README.md">
+# DevFlow ERP (devflow-erp-fe-v1)
+
+devflow erp frontend server
+
+## Install the dependencies
+
+```bash
+yarn
+# or
+npm install
+```
+
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+
+```bash
+quasar dev
+```
+
+### Lint the files
+
+```bash
+yarn lint
+# or
+npm run lint
+```
+
+### Format the files
+
+```bash
+yarn format
+# or
+npm run format
+```
+
+### Build the app for production
+
+```bash
+quasar build
+```
+
+### Customize the configuration
+
+See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
 </file>
 
 <file path="tsconfig.json">
