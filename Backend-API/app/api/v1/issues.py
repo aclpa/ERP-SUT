@@ -167,7 +167,7 @@ def create_issue(
     issue_data = issue_in.model_dump()
     issue_data["key"] = issue_key
     issue_data["creator_id"] = current_user.id
-
+    issue_data["status"] = IssueStatus.TODO
     # 이슈 생성
     db_issue = Issue(**issue_data)
     db.add(db_issue)

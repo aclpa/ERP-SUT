@@ -32,7 +32,6 @@ class IssueCreate(IssueBase):
     project_id: int = Field(description="프로젝트 ID")
     sprint_id: Optional[int] = Field(default=None, description="스프린트 ID (백로그는 NULL)")
     assignee_id: Optional[int] = Field(default=None, description="담당자 ID")
-    status: IssueStatus = Field(default=IssueStatus.TODO, description="이슈 상태")
     estimate_hours: Optional[int] = Field(default=None, ge=0, description="예상 소요 시간 (시간)")
 
 
