@@ -72,10 +72,10 @@ onMounted(() => {
 });
 const allowedTransitions: Record<IssueStatus, IssueStatus[]> = {
   'todo': ['in_progress'],
-  'in_progress': ['in_review', 'todo'],
-  'in_review': ['testing', 'in_progress'],
-  'testing': ['done', 'in_review'],
-  'done': ['closed', 'testing'],
+  'in_progress': ['in_review'],
+  'in_review': ['testing'],
+  'testing': ['done'],
+  'done': ['closed'],
   'closed': []
 }
 // 카드를 드래그해서 다른 열에 놓았을 때 실행될 함수
@@ -87,11 +87,11 @@ const handleMove = async (event: DraggableChangeEvent, newStatus: IssueStatus) =
     // 비유효 전이 차단
     if (!allowedTransitions[currentStatus].includes(newStatus)) {
       $q.notify({
-        type: 'negative',                                            // ← 추가
-        message: `${currentStatus} → ${newStatus} 로 직접 이동할 수 없습니다.`  // ← 추가
+        type: 'negative',
+        message: `${currentStatus} → ${newStatus} 로 직접 이동할 수 없습니다.`
       })
       console.warn(`비유효 전이: ${currentStatus} → ${newStatus}`)
-      void issueStore.fetchIssues({ size: 1000 }) // 원래 위치로 되돌림
+      void issueStore.fetchIssues({ size: 1000 })
       return
     }
 
